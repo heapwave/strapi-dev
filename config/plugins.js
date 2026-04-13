@@ -1,4 +1,28 @@
 module.exports = ({ env }) => ({
+  /**
+   * Upload plugin configuration
+   */
+  upload:{
+    config: {
+      provider: 'aliyun-oss',
+      providerOptions: {
+        endpoint: env('OSS_ENDPOINT', ''), // Optional, only needed if not using the default endpoint for the region
+        accessKeyId: env('OSS_ACCESS_KEY_ID', ''),
+        accessKeySecret: env('OSS_ACCESS_KEY_SECRET', ''),
+        // region: env('OSS_REGION', 'oss-cn-hangzhou'),
+        // bucket: env('OSS_BUCKET', ''),
+        secure: env.bool('OSS_SECURE', true), // Optional, defaults to `true`
+      },
+      actionOptions: {
+        upload: {},
+        uploadStream: {},
+        delete: {},
+      },
+    }
+  },
+  /**
+   * Email plugin configuration
+   */
   email: {
     config: {
       provider: "nodemailer",
