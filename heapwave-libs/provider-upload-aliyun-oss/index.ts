@@ -92,28 +92,29 @@ export = {
     // Upload file using stream
     async function uploadStream(file: any) {
       // 本后端服务提供的代理访问 oss 图片的接口基本路径
-      const baseUrl =
-        process.env.NODE_ENV === "production"
-          ? "https://heapwave.cn"
-          : "http://localhost:1337";
-      console.log("uploadStream -->", options);
+      // const baseUrl =
+      //   process.env.NODE_ENV === "production"
+      //     ? "https://heapwave.cn"
+      //     : "http://localhost:1337";
+      // console.log("uploadStream -->", options);
       // file content is accessible via file.stream
       const stream = file.stream;
       // 构建 OSS 中的文件路径
       const objectKey = appPath + "/" + file.hash + file.ext;
-      
+
       try {
         // 上传到 OSS
         let result = await client.putStream(objectKey, stream);
-        console.log("Upload result:", result);
-        
+        console.log("[upload stream]", result);
+
         // 构建 OSS URL
         const bucket = providerOptions.bucket;
         const endpoint = providerOptions.endpoint;
+        // 如果没有 endpoint，则 url 为空
         const ossUrl = endpoint
           ? `https://${bucket}.${endpoint}/${objectKey}`
-          : ""; // 如果没有 endpoint，则 url 为空
-        
+          : "";
+
         // 返回上传结果
         // Strapi 将使用这些信息来存储文件引用
         return {
@@ -127,9 +128,22 @@ export = {
     }
 
     // Delete file from OSS
-    function __delete(file: any) {
-      console.log("delete", typeof file, file);
+    async function __delete(file: any) {
+      console.log("[delete oss file]", file);
       // Delete the file from your OSS server
+      const fileName = appPath + "/" + file.hash + file.ext;
+      try {
+        await client.delete(fileName);
+      } catch (error: any) {
+        error.failObjectName = fileName;
+        return error;
+      }
+    }
+
+    // Delete multiple files from OSS
+    async function deleteMany(files: any[]) {
+      console.log("[deleteMany oss files]", files);
+      // Delete multiple files from your OSS server
     }
 
     // Optional: custom file size check
@@ -143,13 +157,13 @@ export = {
       try {
         // Strapi 会根据数据库中存储的文件信息调用此方法
         // file 对象可能包含的属性：hash, ext, name, url, path 等
-        
+
         let objectKey: string;
-        
+
         // 策略 1：如果 file 同时有 hash 和 ext（来自 uploadStream），使用此路径
         if (file.hash && file.ext) {
           objectKey = appPath + "/" + file.hash + file.ext;
-        } 
+        }
         // 策略 2：如果 file 有 url 属性，尝试从 URL 中提取路径
         else if (file.url) {
           // 从 URL 中提取对象路径，例如从 https://bucket.endpoint/appPath/hash.ext 提取 appPath/hash.ext
@@ -163,21 +177,20 @@ export = {
         // 策略 4：使用文件名称构建（备用方案）
         else if (file.name) {
           objectKey = appPath + "/" + file.name;
-        }
-        else {
+        } else {
           throw new Error("Cannot determine object key from file object");
         }
-        
+
         console.log("getSignedUrl: objectKey =", objectKey, "file =", file);
-        
+
         // 使用 ali-oss 生成签名 URL
         // expires: 签名有效期（秒），设置为 1 天，确保缩略图长期有效
         const signedUrl = client.signatureUrl(objectKey, {
           expires: 86400, // 1 天有效期
           method: "GET",
         });
-        
-        console.log("getSignedUrl generated URL:", signedUrl);
+
+        console.log("[getSignedUrl] generated URL:", signedUrl);
         return { url: signedUrl };
       } catch (err) {
         console.error("Error generating signed URL:", err);
