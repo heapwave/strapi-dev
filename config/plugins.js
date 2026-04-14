@@ -1,24 +1,34 @@
+const path = require("path");
+const providerPath = path.resolve(
+  __dirname,
+  "../heapwave-libs/provider-upload-aliyun-oss/dist/index.js",
+);
+console.log("providerPath:", providerPath);
+
 module.exports = ({ env }) => ({
   /**
    * Upload plugin configuration
    */
-  upload:{
+  upload: {
     config: {
-      provider: 'aliyun-oss',
+      // provider: 'aliyun-oss',
+      provider: providerPath,
       providerOptions: {
-        endpoint: env('OSS_ENDPOINT', ''), // Optional, only needed if not using the default endpoint for the region
-        accessKeyId: env('OSS_ACCESS_KEY_ID', ''),
-        accessKeySecret: env('OSS_ACCESS_KEY_SECRET', ''),
+        endpoint: env("OSS_ENDPOINT", ""), // Optional, only needed if not using the default endpoint for the region
+        accessKeyId: env("OSS_ACCESS_KEY_ID", ""),
+        accessKeySecret: env("OSS_ACCESS_KEY_SECRET", ""),
         // region: env('OSS_REGION', 'oss-cn-hangzhou'),
-        // bucket: env('OSS_BUCKET', ''),
-        secure: env.bool('OSS_SECURE', true), // Optional, defaults to `true`
+        bucket: env('OSS_BUCKET', 'trash-bin-9527'),
+        secure: env.bool("OSS_SECURE", true), // Optional, defaults to `true`
       },
       actionOptions: {
-        upload: {},
+        upload: {
+          test: true
+        },
         uploadStream: {},
         delete: {},
       },
-    }
+    },
   },
   /**
    * Email plugin configuration

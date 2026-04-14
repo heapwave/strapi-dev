@@ -1,4 +1,4 @@
-import ProviderUploadAliyunOss from "../index.js";
+import AliyunOSSProvider from "../index.js";
 import * as dotenv from "dotenv";
 import assert from "node:assert";
 import { describe, it } from "mocha";
@@ -6,7 +6,7 @@ import { renderBuckets } from "../utils/index.js";
 
 dotenv.config();
 
-const provider = new ProviderUploadAliyunOss();
+const provider = AliyunOSSProvider
 
 console.log("provider", provider, process.env.OSS_ACCESS_KEY_ID);
 
