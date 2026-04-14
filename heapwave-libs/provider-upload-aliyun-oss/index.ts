@@ -188,6 +188,10 @@ export = {
         const signedUrl = client.signatureUrl(objectKey, {
           expires: 86400, // 1 天有效期
           method: "GET",
+          // 再加一个 inline 响应参数（可选但推荐）：
+          response: {
+            "content-disposition": "inline",
+          },
         });
 
         console.log("[getSignedUrl] generated URL:", signedUrl);

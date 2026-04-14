@@ -1,0 +1,9 @@
+{
+	"servers": {
+		"strapi-docs-mcp": {
+			"url": "https://strapi-docs.mcp.kapa.ai",
+			"type": "http"
+		}
+	},
+	"inputs": []
+}

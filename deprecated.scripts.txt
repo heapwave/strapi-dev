@@ -1,0 +1,1 @@
+    "postinstall": "node ./scripts/patch-strapi-upload-cors.js",
