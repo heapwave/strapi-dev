@@ -1,9 +1,9 @@
 const path = require("path");
-const providerPath = path.resolve(
-  __dirname,
-  "../heapwave-libs/provider-upload-aliyun-oss/dist/index.js",
-);
-console.log("providerPath:", providerPath);
+// const providerPath = path.resolve(
+//   __dirname,
+//   "../heapwave-libs/provider-upload-aliyun-oss/dist/index.js",
+// );
+// console.log("providerPath:", providerPath);
 
 module.exports = ({ env }) => ({
   /**
@@ -11,8 +11,8 @@ module.exports = ({ env }) => ({
    */
   upload: {
     config: {
-      // provider: 'aliyun-oss',
-      provider: providerPath,
+      provider: '@nibuil/provider-upload-aliyun-oss',
+      // provider: providerPath,
       providerOptions: {
         endpoint: env("OSS_ENDPOINT", ""), // Optional, only needed if not using the default endpoint for the region
         accessKeyId: env("OSS_ACCESS_KEY_ID", ""),

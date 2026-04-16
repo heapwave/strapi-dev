@@ -13,6 +13,7 @@
     "strapi": "strapi"
   },
   "dependencies": {
+    "@nibuil/provider-upload-aliyun-oss": "^1.0.0",
     "@strapi/plugin-cloud": "5.8.1",
     "@strapi/plugin-users-permissions": "5.8.1",
     "@strapi/provider-email-nodemailer": "^5.41.1",
@@ -21,6 +22,7 @@
     "fs-extra": "^10.0.0",
     "mime-types": "^2.1.27",
     "mysql2": "^3.20.0",
+    "pm2": "^6.0.14",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
