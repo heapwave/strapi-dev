@@ -537,6 +537,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiIdeaIdea extends Struct.CollectionTypeSchema {
   collectionName: 'ideas';
   info: {
+    description: '';
     displayName: 'Idea';
     pluralName: 'ideas';
     singularName: 'idea';
@@ -559,6 +560,10 @@ export interface ApiIdeaIdea extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     url: Schema.Attribute.String;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -1031,6 +1036,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    ideas: Schema.Attribute.Relation<'oneToMany', 'api::idea.idea'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

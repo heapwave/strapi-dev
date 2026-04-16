@@ -4,7 +4,8 @@
   "info": {
     "singularName": "idea",
     "pluralName": "ideas",
-    "displayName": "Idea"
+    "displayName": "Idea",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -29,6 +30,12 @@
     },
     "tags": {
       "type": "json"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "ideas"
     }
   }
 }
