@@ -2,3 +2,19 @@
 
   docker build -t my-strapi-app .
   docker run -p 1337:1337 my-strapi-app
+
+
+                                                                                                                                                                                                            
+⏺ # 1. Zip the project locally                                                                                                                                                                                 
+  zip -r dist.zip . -x "node_modules/*" -x ".git/*" -x "build/*"                                                                                                                                               
+                                                                                                                                                                                                               
+  # 2. Transfer via SSH                                                                                                                                                                                        
+  scp dist.zip user@your-server:/path/to/app/                                                                                                                                                                  
+                                                                                                                                                                                                               
+  # 3. On server: unzip and deploy
+  ssh user@your-server
+  cd /path/to/app
+  unzip -o dist.zip
+  docker build -t my-strapi-app .
+  docker stop my-strapi-app 2>/dev/null; docker rm my-strapi-app 2>/dev/null
+  docker run -d --name my-strapi-app -p 1337:1337 --env-file .env.prod my-strapi-app
