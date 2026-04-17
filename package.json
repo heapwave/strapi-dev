@@ -4,12 +4,12 @@
   "private": true,
   "description": "A Strapi application",
   "scripts": {
-    "build": "strapi build",
-    "deploy": "strapi deploy",
+    "build": "cross-env NODE_ENV=production env-cmd -f .env.prod strapi build",
+    "deploy": "cross-env NODE_ENV=production env-cmd -f .env.prod strapi deploy",
     "develop": "strapi develop",
     "dev": "npm run develop",
     "seed:example": "node ./scripts/seed.js",
-    "start": "strapi start",
+    "start": "cross-env NODE_ENV=production env-cmd -f .env.prod strapi start",
     "strapi": "strapi"
   },
   "dependencies": {
@@ -26,6 +26,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
+    "cross-env": "^10.1.0",
+    "env-cmd": "^11.0.0",
     "styled-components": "^6.0.0"
   },
   "engines": {
@@ -34,5 +36,6 @@
   },
   "strapi": {
     "uuid": "19e966fc-84c8-4edb-b175-4335691aebc6"
-  }
+  },
+  "devDependencies": {}
 }
