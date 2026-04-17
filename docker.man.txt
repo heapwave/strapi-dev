@@ -9,7 +9,9 @@
   zip -r dist.zip . -x "node_modules/*" -x ".git/*" -x "build/*"                                                                                                                                               
                                                                                                                                                                                                                
   # 2. Transfer via SSH                                                                                                                                                                                        
-  scp dist.zip user@your-server:/path/to/app/                                                                                                                                                                  
+  # scp dist.zip user@your-server:/path/to/app/      
+  scp -i ~/.ssh/macos.pem dist.zip ubuntu@119.45.4.78:/home/ubuntu/projects
+                                                                                                                                                            
                                                                                                                                                                                                                
   # 3. On server: unzip and deploy
   ssh user@your-server

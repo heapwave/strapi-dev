@@ -9,7 +9,7 @@
     "develop": "strapi develop",
     "dev": "npm run develop",
     "seed:example": "node ./scripts/seed.js",
-    "start": "cross-env NODE_ENV=production env-cmd -f .env.prod strapi start",
+    "start": "strapi start",
     "strapi": "strapi"
   },
   "dependencies": {
@@ -19,15 +19,14 @@
     "@strapi/provider-email-nodemailer": "^5.41.1",
     "@strapi/strapi": "5.8.1",
     "better-sqlite3": "11.3.0",
+    "cross-env": "^10.1.0",
+    "env-cmd": "^11.0.0",
     "fs-extra": "^10.0.0",
     "mime-types": "^2.1.27",
     "mysql2": "^3.20.0",
-    "pm2": "^6.0.14",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
-    "cross-env": "^10.1.0",
-    "env-cmd": "^11.0.0",
     "styled-components": "^6.0.0"
   },
   "engines": {
@@ -37,5 +36,7 @@
   "strapi": {
     "uuid": "19e966fc-84c8-4edb-b175-4335691aebc6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "pm2": "^6.0.14"
+  }
 }
