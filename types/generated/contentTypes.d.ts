@@ -398,6 +398,59 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiCurrencySubscriptionTierCurrencySubscriptionTier
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'currency_subscription_tiers';
+  info: {
+    description: '';
+    displayName: 'CurrencySubscriptionTier';
+    pluralName: 'currency-subscription-tiers';
+    singularName: 'currency-subscription-tier';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enabled: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::currency-subscription-tier.currency-subscription-tier'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.Enumeration<['free', 'paid']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'free'>;
+    price: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    quota: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<10>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -974,6 +1027,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
+      'api::currency-subscription-tier.currency-subscription-tier': ApiCurrencySubscriptionTierCurrencySubscriptionTier;
       'api::global.global': ApiGlobalGlobal;
       'api::idea.idea': ApiIdeaIdea;
       'plugin::content-releases.release': PluginContentReleasesRelease;

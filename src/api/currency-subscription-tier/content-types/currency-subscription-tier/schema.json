@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "currency_subscription_tiers",
+  "info": {
+    "singularName": "currency-subscription-tier",
+    "pluralName": "currency-subscription-tiers",
+    "displayName": "CurrencySubscriptionTier",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "enumeration",
+      "enum": [
+        "free",
+        "paid"
+      ],
+      "default": "free",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "quota": {
+      "type": "integer",
+      "required": true,
+      "min": 0,
+      "default": 10
+    }
+  }
+}

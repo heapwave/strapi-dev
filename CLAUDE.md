@@ -50,3 +50,17 @@ Uses three env files: `.env` (dev), `.env.prod` (production). Key variables:
 - `DATABASE_CLIENT` - `mysql` or `sqlite`
 - `OSS_*` - Aliyun OSS configuration for file uploads
 - `SMTP_*` - Email configuration
+
+## Strapi Implementation Workflow
+
+When implementing any Strapi-related features:
+
+1. **Read the documentation first**: Inspect `@docs/strapi/llms.txt` to understand the official Strapi patterns and best practices for the feature you're implementing.
+
+2. **Search for the latest solutions**: If the documentation is unclear or you need more context, use web search to find current implementation patterns, examples, and solutions from the Strapi community.
+
+3. **Follow Strapi conventions**: Use the Document Service API (`strapi.documents()`) instead of deprecated `strapi.entityService()`. Follow the controller-service-router pattern for custom APIs.
+
+## Plans Directory
+
+All design plans should be saved to the `plans/` directory (e.g., `plans/subscription-module.md`). Save the plan to this directory whenever a plan is finalized or updated, before exiting plan mode.
