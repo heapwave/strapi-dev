@@ -34,7 +34,11 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": ["paid", "failed", "refunded"],
+      "enum": [
+        "paid",
+        "failed",
+        "refunded"
+      ],
       "default": "paid",
       "required": true
     },

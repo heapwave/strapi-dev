@@ -26,7 +26,13 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": ["active", "cancelled", "expired", "trial", "past_due"],
+      "enum": [
+        "active",
+        "cancelled",
+        "expired",
+        "trial",
+        "past_due"
+      ],
       "default": "active",
       "required": true
     },
