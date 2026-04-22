@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscription_invoices",
+  "info": {
+    "singularName": "subscription-invoice",
+    "pluralName": "subscription-invoices",
+    "displayName": "SubscriptionInvoice",
+    "description": "Invoice history for subscriptions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subscription": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subscription.subscription",
+      "inversedBy": "invoices"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "subscriptionInvoices"
+    },
+    "amount": {
+      "type": "decimal",
+      "required": true
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["paid", "failed", "refunded"],
+      "default": "paid",
+      "required": true
+    },
+    "paidAt": {
+      "type": "datetime"
+    },
+    "dueDate": {
+      "type": "datetime"
+    },
+    "externalInvoiceId": {
+      "type": "string"
+    },
+    "invoiceUrl": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

@@ -1,5 +1,7 @@
 # Subscription Module Design
 
+**Status: Implemented**
+
 ## Context
 
 The user wants to design a subscription module for their Strapi CMS project. The goal is to brainstorm what tables (content types) and fields are needed — not to implement yet. The user is in plan mode.
@@ -81,9 +83,19 @@ Full invoice/receipt history per subscription.
 
 ---
 
-## Implementation Steps (Not executing yet)
+## Implementation Steps
 
-1. Create `subscription-plan` content type (replaces `currency-subscription-tier`)
-2. Create `subscription` content type
-3. Create `subscription-invoice` content type
-4. Add relations: user → subscription → subscription-plan, user → subscription-invoice
+1. ✅ Create `subscription-plan` content type (replaces `currency-subscription-tier`)
+2. ✅ Create `subscription` content type
+3. ✅ Create `subscription-invoice` content type
+4. ✅ Add relations: user → subscription → subscription-plan, user → subscription-invoice
+
+---
+
+## Implementation Notes
+
+- Created 3 content types: `subscription-plan`, `subscription`, `subscription-invoice`
+- Added inverse relations to User model (`subscriptions`, `subscriptionInvoices`)
+- Added inverse relation to `subscription-plan` (`subscriptions`)
+- Added inverse relation to `subscription` (`invoices`)
+- The old `currency-subscription-tier` API still exists - can be deleted later if not needed

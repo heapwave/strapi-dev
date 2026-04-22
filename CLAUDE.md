@@ -63,4 +63,6 @@ When implementing any Strapi-related features:
 
 ## Plans Directory
 
-All design plans should be saved to the `plans/` directory (e.g., `plans/subscription-module.md`). Save the plan to this directory whenever a plan is finalized or updated, before exiting plan mode.
+All plans approved by user should be saved to the `plans/processing/` directory (e.g., `plans/subscription-module-4-22-2026.md`). 
+
+After a plan has been completed, mv the plan file from `plans/processing/` to `plans/done/` folder.

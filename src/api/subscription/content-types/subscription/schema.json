@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscriptions",
+  "info": {
+    "singularName": "subscription",
+    "pluralName": "subscriptions",
+    "displayName": "Subscription",
+    "description": "Tracks user subscriptions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "subscriptions"
+    },
+    "plan": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subscription-plan.subscription-plan",
+      "inversedBy": "subscriptions"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "cancelled", "expired", "trial", "past_due"],
+      "default": "active",
+      "required": true
+    },
+    "startDate": {
+      "type": "datetime",
+      "required": true
+    },
+    "endDate": {
+      "type": "datetime"
+    },
+    "autoRenew": {
+      "type": "boolean",
+      "default": true
+    },
+    "cancelledAt": {
+      "type": "datetime"
+    },
+    "externalSubscriptionId": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "invoices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subscription-invoice.subscription-invoice",
+      "mappedBy": "subscription"
+    }
+  }
+}

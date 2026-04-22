@@ -70,6 +70,18 @@
       "relation": "oneToMany",
       "target": "api::idea.idea",
       "mappedBy": "user"
+    },
+    "subscriptions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subscription.subscription",
+      "mappedBy": "user"
+    },
+    "subscriptionInvoices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subscription-invoice.subscription-invoice",
+      "mappedBy": "user"
     }
   }
 }
