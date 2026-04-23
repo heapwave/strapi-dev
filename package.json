@@ -13,7 +13,7 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@nibuil/provider-upload-aliyun-oss": "^1.0.0",
+    "@nibuil/provider-upload-aliyun-oss": "file:../plugins/heapwave-libs/strapi/provider-upload-aliyun-oss",
     "@strapi/plugin-cloud": "5.8.1",
     "@strapi/plugin-users-permissions": "5.8.1",
     "@strapi/provider-email-nodemailer": "^5.41.1",
